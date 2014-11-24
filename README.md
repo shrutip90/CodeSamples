@@ -7,22 +7,21 @@ Term project for the course "High Performance Computing: Tools and Applications"
 
 ### AOS-Projects
 Course projects for the course "Advanced Operating Systems"
-	a. Gtthreads: User-level thread library that mimicks pthreads, with a round-robin scheduler.
-		- Individual project
-	b. Barriers: Implementation of barriers for OpenMp and MPI threads in different ways:
-		- Counter-based barrier, MCS barrier, Dissemination and Tournament barriers
-		- Based on the paper "Algorithms for Scalable Synchronization on Shared-Memory Multiprocessors" 
-		  (http://pdos.csail.mit.edu/6.828/2010/readings/mcs.pdf) 
-		- Team of two - I worked on Counter-based barrier and MCS barrier
-	c. RPCProxy: Proxy server that works using RPC calls, using Apache thrift. 
-		- Differnt caching mechanisms are implemented on the proxy side - Random, FIFO and LRU-MIN
-		- Team of two - I worked in LRU-Min and FIFO caching implementation
-	d. RVM: Implementation of Recoverable Virtual Memory to persist the changes to metadata and build fault-tolerance, using transactions
-		- Team of two - Worked together on complete code
+* ***Gtthreads***: User-level thread library that mimicks pthreads, with a round-robin scheduler.
+	* Individual project
+* ***Barriers***: Implementation of barriers for OpenMp and MPI threads in different ways:
+	* Counter-based barrier, MCS barrier, Dissemination and Tournament barriers
+	* Based on the paper "Algorithms for Scalable Synchronization on Shared-Memory Multiprocessors" (http://pdos.csail.mit.edu/6.828/2010/readings/mcs.pdf) 
+	* Team of two - I worked on Counter-based barrier and MCS barrier
+* ***RPCProxy***: Proxy server that works using RPC calls, using Apache thrift. 
+	* Differnt caching mechanisms are implemented on the proxy side - Random, FIFO and LRU-MIN
+	* Team of two - I worked in LRU-Min and FIFO caching implementation
+* ***RVM***: Implementation of Recoverable Virtual Memory to persist the changes to metadata and build fault-tolerance, using transactions
+	* Team of two - Worked together on complete code
 
 ### DistributedComputing-Project
-	- Implementaion of a novel distributed processing system based on publish-subscribe mechanisms(usign Scribe), that processes data in a similar fashion as MapReduce, but works on distributed input. Implemented a face recognition application for demonstration.
-	- Team of two - We developed the idea together. I mainly worked on code and my teammate worked on the report.
+* Implementaion of a novel distributed processing system based on publish-subscribe mechanisms(usign Scribe), that processes data in a similar fashion as MapReduce, but works on distributed input. Implemented a face recognition application for demonstration.
+* Team of two - We developed the idea together. I mainly worked on code and my teammate worked on the report.
 
 ### StatApp
 Android app for collecting statistics from user devices
