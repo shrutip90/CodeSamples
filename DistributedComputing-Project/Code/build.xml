@@ -1,0 +1,138 @@
+<project name="imgProcessingScribe" default="main" basedir=".">
+    <description>
+        simple build file
+    </description>
+  <!-- set global properties for this build -->
+  <property name="src" location="src/scribe-app"/>
+  <property name="src-mr" location="src/map-red"/>
+  <property name="src-app" location="src/face-recognition"/>
+
+  <property name="lib" location="lib"/>
+
+  <property name="build" location="build"/>
+  <property name="build-mr" location="build/map-red"/>
+  <property name="build-app" location="build/face-recognition"/>
+
+  <property name="jar-mr" location="build/map-red-jar"/>
+  <property name="jar-mr-name" value="MapRed"/>
+  <property name="jar-app-dir" location="src/jars"/>
+  <property name="jar-app-name" value="App"/>
+
+  <property name="training" value="src/face-recognition/training"/>
+
+  <property name="dist"  location="dist"/>
+
+  <!-- main-class and arguments for running -->
+  <property name="main-class"  value="Main"/>
+  <!-- ************************ CHANGE THE FOLLOWING ARGUMENTS ******************************** -->
+
+  <!-- Starting bind port for the pastry nodes -->
+  <property name="arg0"  value="9021"/>
+
+  <!-- IP address for binding pastry nodes -->
+  <property name="arg1"  value="10.0.2.15"/>
+
+  <!-- Bind port for Pastry Bootstrap node -->
+  <property name="arg2"  value="9021"/>
+
+  <!-- Number of pastry nodes to be used -->
+  <property name="arg3"  value="10"/>
+
+
+  <target name="init">
+    <!-- Create the time stamp -->
+    <tstamp/>
+    <!-- Create the build directory structure used by compile -->
+    <mkdir dir="${build}"/>
+  </target>
+
+  <path id="project.class.path">
+    <pathelement path="${classpath}"/>
+    <fileset dir="${lib}">
+    	<include name="**/*.jar"/>
+    </fileset>
+    <fileset dir="." includes="**/*.jar"/>
+    <pathelement location="${build}"/>
+  </path>
+
+  <target name="compile-mr" depends="init" description="compile the map-reduce library code" >
+    <mkdir dir="${build-mr}"/>
+    <javac srcdir="${src-mr}" destdir="${build-mr}">
+	<classpath refid="project.class.path"/>
+    </javac>
+  </target>
+
+  <target name="dist-mr" depends="compile-mr" description="jar creation for the map-reduce library" >
+    <mkdir dir="${jar-mr}"/>
+
+    <jar jarfile="${jar-mr}/${jar-mr-name}.jar" basedir="${build-mr}">
+    </jar>
+    <copy file="${jar-mr}/${jar-mr-name}.jar" todir="${lib}"/>
+  </target>
+
+  <target name="compile-app" depends="dist-mr"
+        description="compile the user-supplied map-reduce function code" >
+    <mkdir dir="${build-app}"/>
+    <javac srcdir="${src-app}" destdir="${build-app}">
+	<classpath refid="project.class.path"/>
+    </javac>
+  </target>
+
+  <target name="dist-app" depends="compile-app"
+        description="jar creation for the user-supplied map-reduce code" >
+    <copy todir="${build-app}/training">
+    	<fileset dir="${training}"/>
+    </copy>
+
+    <jar jarfile="${jar-app-dir}/${jar-app-name}.jar" basedir="${build-app}">
+    </jar>
+  </target>
+
+
+  <target name="compile" depends="dist-app"
+        description="compile the source " >
+    <!-- Compile the java code from ${src} into ${build} -->
+    <javac srcdir="${src}" destdir="${build}">
+	<classpath refid="project.class.path"/>
+    </javac>
+  </target>
+
+  <target name="dist" depends="compile"
+        description="generate the distribution" >
+    <!-- Create the distribution directory -->
+    <mkdir dir="${dist}"/>
+    <manifestclasspath property="jar.classpath"
+                       jarfile="${dist}/${ant.project.name}.jar">
+      <classpath refid="project.class.path" />
+    </manifestclasspath>
+
+    <!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
+    <jar jarfile="${dist}/${ant.project.name}.jar" basedir="${build}">
+	 <manifest>
+         	<attribute name="Main-Class" value="${main-class}"/>
+		<attribute name="Class-Path" value="${jar.classpath}"/>
+         </manifest>
+    </jar>
+  </target>
+
+  <target name="run" depends="dist">
+    <java jar="${dist}/${ant.project.name}.jar" fork="true">
+	<arg value="${arg0}"/>
+      	<arg value="${arg1}"/>
+      	<arg value="${arg2}"/>
+      	<arg value="${arg3}"/>
+    </java>
+  </target>
+
+  <target name="clean-build" depends="clean,dist"/>
+
+  <target name="main" depends="clean,run"/>
+
+
+  <target name="clean" description="clean up" >
+    <!-- Delete the ${build} and ${dist} directory trees -->
+    <delete dir="${build}"/>
+    <delete dir="${dist}"/>
+    <delete file="src/jars/App.jar"/>
+  </target>
+</project>

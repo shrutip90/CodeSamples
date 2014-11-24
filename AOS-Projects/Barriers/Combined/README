@@ -1,0 +1,2 @@
+Run the makefile to produce the executable combined
+The executable takes an argument i.e the number of threads per processor.

@@ -1,0 +1,4 @@
+To Run the code:
+- Use 'make senseReverse-omp' and 'make mcs-omp' to compile
+- Use './senseReverse-omp <#threads>' and './mcs-omp <#threads>' to run the executables
+- Use 'make clean' to clean the object and executable files

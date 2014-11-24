@@ -1,0 +1,203 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    tools:context=".MainActivity"
+    android:weightSum="1"
+    android:background="#ffededed">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="#ff7fd3c3"
+        android:padding="10dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/info" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="About"
+            android:autoText="false"
+            android:paddingLeft="10dp" />
+
+    </TableRow>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="This application collects the file system statistics and metadata like file sizes, access and modification times, etc., for research purposes."
+        android:padding="15dp" />
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="#ff7fd3c3"
+        android:padding="10dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/settings" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Settings"
+            android:autoText="false"
+            android:paddingLeft="10dp" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:showDividers="end"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp"
+        android:paddingRight="5dp"
+        android:paddingBottom="5dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Server IP - "
+            android:textColor="#ff4b4d4b"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/textViewIp"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="143.215.204.252"
+            android:textColor="#ff4b4d4b" />
+        <ImageButton
+            android:id="@+id/btnChangeIp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/edit"
+            android:text="Edit" />
+    </TableRow>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ff4b4d4b" />
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:showDividers="end"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp"
+        android:paddingRight="5dp"
+        android:paddingBottom="5dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Encryption Scheme - "
+            android:textColor="#ff4b4d4b"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/textViewHash"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="File Names"
+            android:textColor="#ff4b4d4b" />
+        <ImageButton
+            android:id="@+id/btnChangeHash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/edit"
+            android:text="Edit" />
+    </TableRow>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000000" />
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:weightSum="1"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="20dp">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:id="@+id/btnGetStats"
+            android:text="Start Stats Collection"
+            android:textStyle="bold"
+            android:background="@drawable/roundbutton"
+            android:textSize="20dp"
+            android:textColor="#ffffffff" />
+    </TableRow>
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="fill_parent"
+        android:layout_height="20dp"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:visibility="gone"
+        android:layout_margin="5dp"
+        android:indeterminate="false"
+        android:max="100" />
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:weightSum="1">
+        <Button
+            android:layout_width="121dp"
+            android:layout_height="wrap_content"
+            android:text="View Data"
+            android:id="@+id/btnViewData"
+            android:visibility="gone"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/greybutton"
+            android:layout_marginRight="10dp"
+            android:textColor="#ffffffff" />
+
+        <Button
+            android:layout_width="121dp"
+            android:layout_height="wrap_content"
+            android:text="Send Data"
+            android:visibility="gone"
+            android:id="@+id/btnSendData"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/yellowbutton"
+            android:textColor="#ffffffff" />
+    </TableRow>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/out"
+        android:gravity="center_horizontal" />
+</LinearLayout>

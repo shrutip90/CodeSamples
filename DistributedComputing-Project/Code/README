@@ -1,0 +1,20 @@
+The source code for the project is under the following directories:
+- /src/java: Contains Scribe application code
+- /src/map-red: Contains the user-library code for running map-reduce kind of jobs on Scribe trees
+- /src/app: Code for Face recognition function structured as a map-reduce job, to be dynamically invoked on the Scribe nodes. It also has the training set of images.
+
+- 'lib' folder contains the FreePastry and JavaCV related libraries.
+
+Executing the code:
+---------------------------
+'build.xml' contains the ant build script for compiling the scribe application as well as the
+user-function specifed in /src/app. The parameters defined at the beginning of the file specify the
+IP address and bind ports for the Pastry nodes and the number of Pastry Nodes to be created.
+Change these parameters according to the addresses of the node on which to run.
+
+To run the code, use 'ant'.
+
+Note that the code presently runs only when all the nodes run on a single JVM. Small code modifications
+are required to run it on multiple JVMs. Also, the query label to match with the images is hard-coded into the map function in src/app/FaceRecog.java, to avoid re-computing the label for the query image multiple times in map function. The training folder name and the application code file name 'FaceRecog' are also hard-coded. These have to be changed in code, if required. Sorry for the inconvenience.
+
+
